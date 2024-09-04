@@ -2,7 +2,9 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    margin-left: 250px;
 }
+
 
 /* 햄버거 버튼 스타일 */
 .hamburger-btn {
