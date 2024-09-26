@@ -8,7 +8,7 @@
 </head>
 <body class="body">
     <div class="container">
-        <h1 class="logo">Name Recommend</h1>
+        <h1 class="logo">Code Name</h1>
         <div class="box">
             <div class="inputBox">
                 <input type="text" id="inputText" placeholder="Input Text">
@@ -31,7 +31,6 @@
                 <input type="text" id="outputText2" placeholder="">
                 <input type="text" id="outputText3" placeholder="">
             </div>
-            <div>jedf</div>
         </div>
     </div>
 
@@ -39,7 +38,7 @@
         document.querySelector('#changeButton').addEventListener('click', async () => {
             const inputText = document.querySelector('#inputText').value;
             const lang = document.querySelector('#langList').value;
-
+    
             try {
                 const response = await fetch('http://localhost:3000/recommend', {
                     method: 'POST',
@@ -48,20 +47,23 @@
                     },
                     body: JSON.stringify({ inputText, lang }),
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-
+    
                 const data = await response.json();
-
-                if (Array.isArray(data.names) && data.names.length === 3) {
-                    const [outputText1, outputText2, outputText3] = data.names;
-                    document.querySelector('#outputText1').value = outputText1;
-                    document.querySelector('#outputText2').value = outputText2;
-                    document.querySelector('#outputText3').value = outputText3;
+    
+                // 응답의 names 배열을 확인하고, 최대 3개의 이름만 사용
+                if (Array.isArray(data.names) && data.names.length > 0) {
+                    const limitedNames = data.names.slice(0, 3); // 최대 3개의 변수 이름만 가져옴
+                    
+                    // 각 변수 이름을 입력 필드에 할당 (최대 3개)
+                    document.querySelector('#outputText1').value = limitedNames[0] || ''; // 존재하면 넣고 없으면 빈 문자열
+                    document.querySelector('#outputText2').value = limitedNames[1] || '';
+                    document.querySelector('#outputText3').value = limitedNames[2] || '';
                 } else {
-                    throw new Error('Invalid response format');
+                    throw new Error('No variable names found');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -69,5 +71,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

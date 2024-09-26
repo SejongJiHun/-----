@@ -5,7 +5,7 @@ const cors = require('cors');  // CORS 추가
 require('dotenv').config();  // 환경 변수 로드
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());  // CORS 미들웨어 사용
