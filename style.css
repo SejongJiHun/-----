@@ -1,0 +1,70 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    margin-left: 250px;
+}
+
+
+/* 햄버거 버튼 스타일 */
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px; /* 버튼의 너비 */
+    height: 25px; /* 버튼의 높이 */
+    padding: 10px;
+    position: fixed; /* 화면에 고정 */
+    top: 10px;       /* 상단에서 10px 떨어지도록 */
+    left: 10px;      /* 왼쪽에서 10px 떨어지도록 */
+    background-color: white; /* 버튼 배경 색상 */
+    
+    border-radius: 5px; /* 둥근 테두리 설정 */
+    z-index: 101;    /* 사이드바와 오버레이 위에 오도록 z-index 설정 */
+    cursor: pointer; /* 커서 포인터로 설정 */
+    transition: background-color 0.3s; /* 배경색 애니메이션 */
+}
+
+/* 햄버거 버튼 줄 스타일 */
+.bar {
+    width: 30px; /* 줄의 너비 */
+    height: 3px; /* 줄의 높이 */
+    background-color: #111; /* 줄의 색상 */
+    border-radius: 5px; /* 둥근 줄 설정 */
+}
+
+/* 사이드바 기본 스타일 */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* 화면에서 숨김 */
+    background-color: white; /* 사이드바 배경색을 하얀색으로 설정 */
+    color: #111; /* 사이드바 텍스트 색상 */
+    transition: 0.3s; /* 부드러운 슬라이드 효과 */
+    z-index: 100; /* 오버레이 아래에 오도록 낮은 z-index 설정 */
+    padding-top: 60px; /* 햄버거 버튼 아래에서부터 메뉴가 시작되도록 패딩 추가 */
+}
+
+/* 사이드바가 보일 때 */
+.sidebar.active {
+    left: 0;
+}
+
+/* 오버레이 기본 스타일 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검정색 배경 */
+    display: none; /* 기본적으로 숨김 */
+    z-index: 99; /* 사이드바 아래에 오도록 설정 */
+}
+
+/* 오버레이가 보일 때 */
+.overlay.active {
+    display: block;
+}
